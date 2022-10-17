@@ -3,6 +3,8 @@ VAGRANTFILE_API_VERSION = "2"
 
 BOX='centos7-standard'
 BOX_URL='https://www.dropbox.com/s/hiarmp3cdzjy94o/centos7-standard.box?dl=1'
+# download above file manually and copy it to current directroy
+BOX_URL='./centos7-standard.box'
 
 BOX_OPENSTACK='openstack'
 BOX_URL_OPENSTACK='https://www.dropbox.com/s/azww4ud3ti910os/openstack.box?dl=1'
@@ -51,7 +53,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                  config.vm.define :"ceph-node1" do |node1|
                         node1.vm.box = BOX
                         node1.vm.box_url = BOX_URL
-                        node1.vm.network :private_network, ip: "192.168.1.101"
+                        node1.vm.network :private_network, ip: "192.168.56.101"
                         node1.vm.hostname = ceph_node1
                         node1.vm.synced_folder ".", "/vagrant", disabled: true
 			node1.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
@@ -87,7 +89,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
  		config.vm.define :"ceph-node2" do |node2|
                         node2.vm.box = BOX
                         node2.vm.box_url = BOX_URL
-                        node2.vm.network :private_network, ip: "192.168.1.102"
+                        node2.vm.network :private_network, ip: "192.168.56.102"
                         node2.vm.hostname = ceph_node2
                         node2.vm.synced_folder ".", "/vagrant", disabled: true
 			node2.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
@@ -122,7 +124,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 config.vm.define :"ceph-node3" do |node3|
                         node3.vm.box = BOX
                         node3.vm.box_url = BOX_URL
-                        node3.vm.network :private_network, ip: "192.168.1.103"
+                        node3.vm.network :private_network, ip: "192.168.56.103"
                         node3.vm.hostname = ceph_node3
                         node3.vm.synced_folder ".", "/vagrant", disabled: true
 			node3.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
@@ -157,7 +159,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 config.vm.define :"ceph-node4" do |node4|
                         node4.vm.box = BOX
                         node4.vm.box_url = BOX_URL
-                        node4.vm.network :private_network, ip: "192.168.1.104"
+                        node4.vm.network :private_network, ip: "192.168.56.104"
                         node4.vm.hostname = ceph_node4
                         node4.vm.synced_folder ".", "/vagrant", disabled: true
                         node4.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
@@ -192,7 +194,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                  config.vm.define :"openstack-node1" do |os|
                         os.vm.box = BOX_OPENSTACK
                         os.vm.box_url = BOX_URL_OPENSTACK
-                        os.vm.network :private_network, ip: "192.168.1.111"
+                        os.vm.network :private_network, ip: "192.168.56.111"
                         os.vm.hostname = os_host
                         os.vm.synced_folder ".", "/vagrant", disabled: true
 			os.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
@@ -211,7 +213,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                  config.vm.define :"client-node1" do |os|
                         os.vm.box = CLIENT_NODE
                         #os.vm.box_url = BOX_URL_OPENSTACK
-                        os.vm.network :private_network, ip: "192.168.1.110"
+                        os.vm.network :private_network, ip: "192.168.56.110"
                         os.vm.hostname = client_host
                         os.vm.synced_folder ".", "/vagrant", disabled: true
 			os.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
@@ -230,7 +232,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                  config.vm.define :"rgw-node1" do |rgw|
                         rgw.vm.box = BOX
                         rgw.vm.box_url = BOX_URL
-                        rgw.vm.network :private_network, ip: "192.168.1.106"
+                        rgw.vm.network :private_network, ip: "192.168.56.106"
                         rgw.vm.hostname = rgw_node1_hostname
                         rgw.vm.synced_folder ".", "/vagrant", disabled: true
                         rgw.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
@@ -249,7 +251,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                  config.vm.define :"us-east-1" do |use1|
                         use1.vm.box = BOX
                         use1.vm.box_url = BOX_URL
-                        use1.vm.network :private_network, ip: "192.168.1.107"
+                        use1.vm.network :private_network, ip: "192.168.56.107"
                         use1.vm.hostname = us_east_rgw_hostname 
                         use1.vm.synced_folder ".", "/vagrant", disabled: true
                         use1.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
@@ -268,7 +270,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                  config.vm.define :"us-west-1" do |usw1|
                         usw1.vm.box = BOX
                         usw1.vm.box_url = BOX_URL
-                        usw1.vm.network :private_network, ip: "192.168.1.108"
+                        usw1.vm.network :private_network, ip: "192.168.56.108"
                         usw1.vm.hostname = us_west_rgw_hostname
                         usw1.vm.synced_folder ".", "/vagrant", disabled: true
                         usw1.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
@@ -287,7 +289,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                  config.vm.define :"owncloud" do |oc|
                         oc.vm.box = BOX
                         oc.vm.box_url = BOX_URL
-                        oc.vm.network :private_network, ip: "192.168.1.120"
+                        oc.vm.network :private_network, ip: "192.168.56.120"
                         oc.vm.hostname = oc_hostname
                         oc.vm.synced_folder ".", "/vagrant", disabled: true
                         oc.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
